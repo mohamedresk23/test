@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: taskflow_db
+    environment:
+      POSTGRES_USER: taskflow
+      POSTGRES_PASSWORD: taskflowpassword
+      POSTGRES_DB: taskflow
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./backend/migrations:/docker-entrypoint-initdb.d
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  pgdata:

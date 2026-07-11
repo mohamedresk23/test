@@ -1,0 +1,12 @@
+import { Pool } from 'pg';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL || 'postgresql://taskflow:taskflowpassword@localhost:5432/taskflow'
+});
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const query = (text: string, params?: any[]) => pool.query(text, params);
+export default pool;
