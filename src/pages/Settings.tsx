@@ -1,3 +1,16 @@
+/**
+ * @file Settings.tsx
+ * @description User preferences and application settings page placeholder.
+ * Will serve as the interface for customizing account details, appearance, and notifications.
+ */
+
+import * as React from 'react';
+
+/**
+ * Settings Page Component
+ * 
+ * Renders the settings header and placeholder panel for future configuration options.
+ */
 export default function Settings() {
   return (
     <div className="space-y-6">

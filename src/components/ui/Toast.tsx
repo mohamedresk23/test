@@ -1,20 +1,43 @@
+/**
+ * @file Toast.tsx
+ * @description Global notification (`Toast`) system using Zustand and Tailwind CSS.
+ * Provides `useToastStore` to trigger temporary floating alerts across the app
+ * and `<ToastContainer />` to render active alerts with auto-dismiss timers.
+ */
+
 /* eslint-disable react-refresh/only-export-components */
 import { cn } from '@/lib/utils';
 import { create } from 'zustand';
 
+/**
+ * Toast Interface
+ * Represents a single alert banner notification.
+ */
 export interface Toast {
+  /** Unique alert ID */
   id: string;
+  /** Primary bold headline */
   title: string;
+  /** Optional secondary details */
   message?: string;
+  /** Visual severity color theme (`success`, `error`, `warning`, `info`) */
   type?: 'success' | 'error' | 'warning' | 'info';
 }
 
+/**
+ * ToastStore Interface
+ * Defines state items and addition/removal triggers for toast notifications.
+ */
 interface ToastStore {
   toasts: Toast[];
   addToast: (toast: Omit<Toast, 'id'>) => void;
   removeToast: (id: string) => void;
 }
 
+/**
+ * Zustand Hook: `useToastStore`
+ * Automatically removes added toasts after a 4,000ms (4-second) timeout.
+ */
 export const useToastStore = create<ToastStore>((set) => ({
   toasts: [],
   addToast: (toast) => {
@@ -27,6 +50,11 @@ export const useToastStore = create<ToastStore>((set) => ({
   removeToast: (id) => set((state) => ({ toasts: state.toasts.filter((t) => t.id !== id) })),
 }));
 
+/**
+ * ToastContainer Component
+ * 
+ * Fixed positioning wrapper mounted in `AppShell` that renders all active notifications.
+ */
 export function ToastContainer() {
   const { toasts, removeToast } = useToastStore();
   

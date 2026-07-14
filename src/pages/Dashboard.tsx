@@ -1,8 +1,20 @@
 
+/**
+ * @file Dashboard.tsx
+ * @description Primary application landing page and summary dashboard.
+ * Displays user greeting, daily productivity summary, interactive streak counter,
+ * recent tasks checklist, active goals overview, and time tracking stats.
+ */
+
 import { useAuthStore } from '@/store/authStore';
 import { Target, Flame, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
+/**
+ * Dashboard Page Component
+ * 
+ * Renders the top-level overview widgets for daily task and goal productivity.
+ */
 export default function Dashboard() {
   const { user } = useAuthStore();
 

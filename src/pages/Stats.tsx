@@ -1,7 +1,20 @@
+/**
+ * @file Stats.tsx
+ * @description Productivity and task statistics analytics dashboard page.
+ * Aggregates completion metrics (`completedCount`, `pendingCount`, `highPriorityCompleted`)
+ * from `useTaskStore` and renders interactive visual analytics including weekly bar
+ * charts (`recharts`), streak counters, and categorical progress cards.
+ */
+
 import { useTaskStore } from '@/store/taskStore';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Trophy, CheckCircle, Clock, Flame } from 'lucide-react';
 
+/**
+ * Stats Page Component
+ * 
+ * Renders statistical KPIs and weekly completion charts.
+ */
 export default function Stats() {
   const { tasks } = useTaskStore();
 

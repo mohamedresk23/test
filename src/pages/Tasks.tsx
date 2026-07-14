@@ -1,3 +1,11 @@
+/**
+ * @file Tasks.tsx
+ * @description Task management page component.
+ * Displays interactive task list with status filtering (`all`, `pending`, `completed`),
+ * priority badges, due date formatting (`date-fns`), checkmark toggle with celebratory
+ * canvas confetti animation, deletion capabilities, and creation modal trigger.
+ */
+
 import * as React from 'react';
 import { useTaskStore } from '@/store/taskStore';
 import { Button } from '@/components/ui/Button';
@@ -10,6 +18,11 @@ import { format } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import confetti from 'canvas-confetti';
 
+/**
+ * Tasks Page Component
+ * 
+ * Provides full client-side task management capabilities and status filters.
+ */
 export default function Tasks() {
   const { tasks, loadTasks, toggleComplete, deleteTask } = useTaskStore();
   const [isModalOpen, setIsModalOpen] = React.useState(false);

@@ -1,11 +1,28 @@
+/**
+ * @file Checkbox.tsx
+ * @description Custom styled accessible checkbox input (`React.forwardRef`).
+ * Wraps a native screen-reader-only (`sr-only`) input element with an interactive
+ * custom checkmark box featuring focus ring accessibility and green checked state.
+ */
+
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { Check } from "lucide-react"
 
+/**
+ * CheckboxProps Interface
+ * Extends standard HTML input attributes while omitting `type` and adding `onCheckedChange`.
+ */
 export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+  /** Optional callback handler fired when checked state toggles */
   onCheckedChange?: (checked: boolean) => void;
 }
 
+/**
+ * Checkbox Component
+ * 
+ * Accessible custom checkbox wrapper with checkmark animation.
+ */
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   ({ className, onCheckedChange, checked, onChange, ...props }, ref) => {
     return (

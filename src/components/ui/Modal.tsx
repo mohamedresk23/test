@@ -1,16 +1,38 @@
+/**
+ * @file Modal.tsx
+ * @description Accessible overlay dialog window (`role="dialog"`).
+ * Locks body scroll when open and closes automatically when `Escape` key is pressed
+ * or the close button (`X`) is clicked.
+ */
+
 import * as React from 'react';
 import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+/**
+ * ModalProps Interface
+ * Defines visibility trigger, callbacks, and content options for modal dialogs.
+ */
 interface ModalProps {
+  /** Controls whether the modal window is currently mounted and visible */
   isOpen: boolean;
+  /** Callback triggered when user clicks close button or presses Escape */
   onClose: () => void;
+  /** Optional header title displayed at the top of the dialog */
   title?: string;
+  /** Dialog inner content */
   children: React.ReactNode;
+  /** Additional container styling classes */
   className?: string;
 }
 
+/**
+ * Modal Component
+ * 
+ * Renders a centered dialog over a dark backdrop with scroll locking.
+ */
 export function Modal({ isOpen, onClose, title, children, className }: ModalProps) {
+  // Listen for Escape keyboard shortcuts and lock background body scroll while open
   React.useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();

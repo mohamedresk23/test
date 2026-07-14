@@ -1,3 +1,11 @@
+/**
+ * @file Goals.tsx
+ * @description Long-term goals management page component.
+ * Enables users to create high-level targets, adjust completion percentage via interactive
+ * progress bar controls (+/- 10%), delete completed/abandoned goals, and receive
+ * immediate toast notifications upon updates (`useGoalStore`).
+ */
+
 import * as React from 'react';
 import { useGoalStore } from '@/store/goalStore';
 import { Button } from '@/components/ui/Button';
@@ -6,6 +14,11 @@ import { ProgressBar } from '@/components/ui/ProgressBar';
 import { Modal } from '@/components/ui/Modal';
 import { useToastStore } from '@/components/ui/Toast';
 
+/**
+ * Goals Page Component
+ * 
+ * Renders the goal dashboard list and creation dialog.
+ */
 export default function Goals() {
   const { goals, addGoal, updateProgress, deleteGoal } = useGoalStore();
   const [isModalOpen, setIsModalOpen] = React.useState(false);

@@ -1,12 +1,31 @@
+/**
+ * @file Avatar.tsx
+ * @description Circular user profile avatar component.
+ * Displays an image (`src`) if provided, falling back to uppercase text (`initials`)
+ * inside a rounded placeholder circle. Supports `sm`, `md`, and `lg` sizing profiles.
+ */
+
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 
+/**
+ * AvatarProps Interface
+ * Defines image source URL, fallback text initials, and avatar dimensions.
+ */
 interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Profile image URL */
   src?: string;
+  /** Fallback initials string (e.g. 'JD') shown if image is absent or broken */
   initials?: string;
+  /** Avatar profile icon dimensions (`sm`, `md`, or `lg`) */
   size?: 'sm' | 'md' | 'lg';
 }
 
+/**
+ * Avatar Component
+ * 
+ * Renders a circular profile badge with automatic fallback handling.
+ */
 export function Avatar({ className, src, initials, size = 'md', ...props }: AvatarProps) {
   const sizes = {
     sm: 'h-8 w-8 text-xs',

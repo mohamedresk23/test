@@ -1,8 +1,15 @@
+/**
+ * @file App.tsx
+ * @description Core application router and root layout wrapper.
+ * Configures client-side routing using `react-router-dom` with code-splitted,
+ * lazy-loaded page components for optimal performance and fast bundle loading.
+ */
+
 import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppShell } from '@/components/layout/AppShell';
 
-// Lazy loaded page components
+// Lazy-loaded page components wrapped in React.Suspense
 const Dashboard = React.lazy(() => import('./pages/Dashboard'));
 const Tasks = React.lazy(() => import('./pages/Tasks'));
 const Goals = React.lazy(() => import('./pages/Goals'));
@@ -10,6 +17,13 @@ const Calendar = React.lazy(() => import('./pages/Calendar'));
 const Stats = React.lazy(() => import('./pages/Stats'));
 const Settings = React.lazy(() => import('./pages/Settings'));
 
+/**
+ * App Component
+ * 
+ * Sets up the `<BrowserRouter>` and `<Suspense>` fallback loader, routing
+ * requests through the primary `<AppShell>` wrapper which provides navigation
+ * (sidebar and bottom bar) around each nested page view.
+ */
 function App() {
   return (
     <BrowserRouter>

@@ -1,15 +1,35 @@
+/**
+ * @file AddTaskModal.tsx
+ * @description Task creation modal dialog feature component.
+ * Provides an interactive form for creating and storing new tasks with fields for
+ * title, optional description, priority rating, estimated duration, and due date.
+ * Integrates with `useTaskStore` for persistence and `useToastStore` for user notifications.
+ */
+
 import * as React from 'react';
 import { Modal } from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
 import { useTaskStore } from '@/store/taskStore';
 import { useToastStore } from '@/components/ui/Toast';
 
+/**
+ * AddTaskModalProps Interface
+ * Defines visibility trigger, close callback, and optional pre-populated date string.
+ */
 interface AddTaskModalProps {
+  /** Controls whether the modal dialog window is currently visible */
   isOpen: boolean;
+  /** Callback triggered when user cancels or successfully saves the task */
   onClose: () => void;
+  /** Optional prefilled date string (ISO YYYY-MM-DD) */
   defaultDate?: string;
 }
 
+/**
+ * AddTaskModal Feature Component
+ * 
+ * Renders a task creation form inside a popup dialog window with input validation.
+ */
 export function AddTaskModal({ isOpen, onClose, defaultDate }: AddTaskModalProps) {
   const addTask = useTaskStore((state) => state.addTask);
   const addToast = useToastStore((state) => state.addToast);
@@ -20,6 +40,7 @@ export function AddTaskModal({ isOpen, onClose, defaultDate }: AddTaskModalProps
   const [estimatedMinutes, setEstimatedMinutes] = React.useState<number | ''>('');
   const [dueDate, setDueDate] = React.useState(defaultDate || '');
 
+  // Reset form inputs clean whenever the dialog opens or initial date changes
   React.useEffect(() => {
     if (isOpen) {
       setTitle('');
@@ -30,6 +51,10 @@ export function AddTaskModal({ isOpen, onClose, defaultDate }: AddTaskModalProps
     }
   }, [isOpen, defaultDate]);
 
+  /**
+   * Form submission handler
+   * Validates required title field, persists task to IndexedDB via store, and shows feedback.
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim()) {

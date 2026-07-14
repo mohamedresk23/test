@@ -1,17 +1,32 @@
+/**
+ * @file FAB.tsx
+ * @description Floating Action Button (`FAB`) layout component.
+ * Renders an expandable circular action button positioned at the bottom corner of the
+ * viewport. When clicked, reveals quick-action buttons such as adding tasks or goals.
+ * Closes automatically on outside click or navigation change.
+ */
+
 import * as React from 'react';
 import { Plus, Edit3, Video, Target, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLocation } from 'react-router-dom';
 
+/**
+ * FAB Component
+ * 
+ * Interactive floating button menu supporting quick creation triggers.
+ */
 export function FAB() {
   const [isOpen, setIsOpen] = React.useState(false);
   const menuRef = React.useRef<HTMLDivElement>(null);
   const location = useLocation();
 
+  // Close popup menu automatically whenever route location changes
   React.useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);
 
+  // Close popup menu when user clicks outside the menu container
   React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {

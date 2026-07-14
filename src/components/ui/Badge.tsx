@@ -1,10 +1,27 @@
+/**
+ * @file Badge.tsx
+ * @description Small status indicator (`Badge`) UI component.
+ * Displays categorization or status pills with variant color schemes (`default`,
+ * `primary`, `success`, `warning`, `danger`).
+ */
+
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 
+/**
+ * BadgeProps Interface
+ * Extends standard HTML div attributes with visual variant options.
+ */
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Color theme preset for the badge pill */
   variant?: 'default' | 'primary' | 'success' | 'warning' | 'danger';
 }
 
+/**
+ * Badge Component
+ * 
+ * Renders an inline pill-shaped label indicator.
+ */
 export function Badge({ className, variant = 'default', ...props }: BadgeProps) {
   const variants = {
     default: 'bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-100',

@@ -1,3 +1,11 @@
+/**
+ * @file Calendar.tsx
+ * @description Advanced calendar scheduling and visual task tracking page.
+ * Uses `@fullcalendar/react` (`dayGrid`, `timeGrid`, `interaction`) to render tasks
+ * directly onto interactive monthly, weekly, or daily schedules. Supports date-click
+ * task creation, drag/drop adjustments, priority/status filtering, and task detail modals.
+ */
+
 import * as React from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -26,6 +34,11 @@ import {
   Timer
 } from 'lucide-react';
 
+/**
+ * Calendar Page Component
+ * 
+ * Interactive calendar matrix with quick-add dialogs and filtering controls.
+ */
 export default function Calendar() {
   const { tasks, loadTasks, toggleComplete, deleteTask } = useTaskStore();
   const addToast = useToastStore((state) => state.addToast);

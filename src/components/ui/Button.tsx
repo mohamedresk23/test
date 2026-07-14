@@ -1,13 +1,32 @@
+/**
+ * @file Button.tsx
+ * @description Reusable, accessible UI button component.
+ * Supports multiple visual styling variants (`primary`, `secondary`, `danger`, `ghost`),
+ * button dimensions (`sm`, `md`, `lg`), and an interactive loading indicator (`isLoading`).
+ */
+
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
 
+/**
+ * ButtonProps Interface
+ * Extends standard HTML button attributes with custom styling and loading flags.
+ */
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Visual theme preset of the button */
   variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
+  /** Sizing profile of the button */
   size?: 'sm' | 'md' | 'lg';
+  /** If true, disables the button and displays a spinning loader icon */
   isLoading?: boolean;
 }
 
+/**
+ * Button Component (`React.forwardRef`)
+ * 
+ * Standard application button with dynamic Tailwind styling via utility merging (`cn`).
+ */
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', isLoading, children, disabled, ...props }, ref) => {
     

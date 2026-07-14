@@ -1,9 +1,17 @@
 
+/**
+ * @file Sidebar.tsx
+ * @description Desktop navigation sidebar component (`hidden md:flex`).
+ * Renders the primary brand logo, main navigation routes with active indicators (`NavLink`),
+ * quick settings link, and current authenticated user details with sign-out action.
+ */
+
 import { NavLink } from 'react-router-dom';
 import { Home, CheckSquare, Target, CalendarDays, BarChart2, Settings, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuthStore } from '@/store/authStore';
 
+// Main navigation routes rendered inside the sidebar
 const navItems = [
   { path: '/', label: 'Dashboard', icon: Home },
   { path: '/tasks', label: 'Tasks', icon: CheckSquare },
@@ -12,6 +20,11 @@ const navItems = [
   { path: '/stats', label: 'Stats', icon: BarChart2 },
 ];
 
+/**
+ * Sidebar Component
+ * 
+ * Persistent vertical navigation bar shown on medium and larger screen widths (`md:`).
+ */
 export function Sidebar() {
   const { user, clearAuth } = useAuthStore();
   

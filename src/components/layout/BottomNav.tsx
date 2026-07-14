@@ -1,8 +1,17 @@
 
+/**
+ * @file BottomNav.tsx
+ * @description Mobile-optimized bottom navigation bar (`md:hidden`).
+ * Fixed to the bottom of the viewport with backdrop blur styling, allowing quick
+ * tab switching between core application pages on small screens (`Dashboard`,
+ * `Tasks`, `Goals`, `Calendar`, and `Stats`).
+ */
+
 import { NavLink } from 'react-router-dom';
 import { Home, CheckSquare, Target, CalendarDays, BarChart2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+// Navigation tab definitions with icons and route paths
 const navItems = [
   { path: '/', label: 'Dashboard', icon: Home },
   { path: '/tasks', label: 'Tasks', icon: CheckSquare },
@@ -11,6 +20,11 @@ const navItems = [
   { path: '/stats', label: 'Stats', icon: BarChart2 },
 ];
 
+/**
+ * BottomNav Component
+ * 
+ * Renders a fixed bottom tab bar visible strictly on mobile viewports (`md:hidden`).
+ */
 export function BottomNav() {
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 pb-safe shadow-[0_-4px_10px_rgba(0,0,0,0.05)] z-40">

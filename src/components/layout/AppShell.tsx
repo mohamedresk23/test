@@ -1,10 +1,23 @@
 
+/**
+ * @file AppShell.tsx
+ * @description Master structural layout container for the TaskFlow application.
+ * Wraps persistent UI navigation elements (`Sidebar` on desktop, `BottomNav` on mobile,
+ * and floating action button `FAB`) around the active route view (`<Outlet />`).
+ */
+
 import { Outlet } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { BottomNav } from './BottomNav';
 import { FAB } from './FAB';
 import { ToastContainer } from '@/components/ui/Toast';
 
+/**
+ * AppShell Component
+ * 
+ * Renders the primary application structure and manages scrollable content regions.
+ * Also mounts the global `<ToastContainer />` for application-wide alerts.
+ */
 export function AppShell() {
   return (
     <div className="min-h-screen flex bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-primary-500/30">
