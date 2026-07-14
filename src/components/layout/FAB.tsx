@@ -23,10 +23,10 @@ export function FAB() {
   }, []);
 
   const actions = [
-    { icon: Edit3, label: 'إضافة مهمة يدوياً', color: 'bg-blue-500 text-white hover:bg-blue-600', onClick: () => console.log('task') },
-    { icon: Video, label: 'استيراد من يوتيوب', color: 'bg-red-500 text-white hover:bg-red-600', onClick: () => console.log('yt') },
-    { icon: Target, label: 'إضافة هدف', color: 'bg-amber-500 text-white hover:bg-amber-600', onClick: () => console.log('goal') },
-    { icon: Clock, label: 'إضافة كتلة زمنية', color: 'bg-green-500 text-white hover:bg-green-600', onClick: () => console.log('time') },
+    { icon: Edit3, label: 'Add Task Manually', color: 'bg-blue-500 text-white hover:bg-blue-600', onClick: () => console.log('task') },
+    { icon: Video, label: 'Import from YouTube', color: 'bg-red-500 text-white hover:bg-red-600', onClick: () => console.log('yt') },
+    { icon: Target, label: 'Add Goal', color: 'bg-amber-500 text-white hover:bg-amber-600', onClick: () => console.log('goal') },
+    { icon: Clock, label: 'Add Time Block', color: 'bg-green-500 text-white hover:bg-green-600', onClick: () => console.log('time') },
   ];
 
   return (

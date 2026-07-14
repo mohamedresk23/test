@@ -33,7 +33,7 @@ export function AddTaskModal({ isOpen, onClose, defaultDate }: AddTaskModalProps
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim()) {
-      addToast({ title: 'خطأ', message: 'يرجى إدخال عنوان المهمة', type: 'error' });
+      addToast({ title: 'Error', message: 'Please enter task title', type: 'error' });
       return;
     }
     
@@ -45,78 +45,82 @@ export function AddTaskModal({ isOpen, onClose, defaultDate }: AddTaskModalProps
         estimated_minutes: estimatedMinutes ? Number(estimatedMinutes) : undefined,
         due_date: dueDate ? new Date(dueDate).toISOString() : undefined,
       });
-      addToast({ title: 'تم', message: 'تمت إضافة المهمة بنجاح', type: 'success' });
+      addToast({ title: 'Done', message: 'Task added successfully', type: 'success' });
       onClose();
     } catch {
-      addToast({ title: 'خطأ', message: 'حدث خطأ أثناء الإضافة', type: 'error' });
+      addToast({ title: 'Error', message: 'An error occurred while adding task', type: 'error' });
     }
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="إضافة مهمة جديدة">
+    <Modal isOpen={isOpen} onClose={onClose} title="Add New Task">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-1">عنوان المهمة <span className="text-red-500">*</span></label>
+          <label className="block text-sm font-medium mb-1.5">Task Title <span className="text-red-500">*</span></label>
           <input 
             type="text" 
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full rounded-md border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary-500 focus:ring-primary-500 text-sm p-2 border"
-            placeholder="مثال: مراجعة التقرير الشهري..."
+            placeholder="e.g. Review monthly report..."
+            className="w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
             autoFocus
           />
         </div>
         
         <div>
-          <label className="block text-sm font-medium mb-1">الوصف</label>
+          <label className="block text-sm font-medium mb-1.5">Description</label>
           <textarea 
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full rounded-md border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary-500 focus:ring-primary-500 text-sm p-2 border min-h-[80px]"
-            placeholder="تفاصيل المهمة (اختياري)..."
+            placeholder="Task details (optional)..."
+            rows={3}
+            className="w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
           />
         </div>
         
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-1">الأولوية</label>
+            <label className="block text-sm font-medium mb-1.5">Priority</label>
             <select 
               value={priority}
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               onChange={(e) => setPriority(e.target.value as any)}
-              className="w-full rounded-md border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary-500 focus:ring-primary-500 text-sm p-2 border"
+              className="w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
             >
-              <option value="low">منخفضة</option>
-              <option value="medium">متوسطة</option>
-              <option value="high">مرتفعة</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">الوقت المتوقع (بالدقائق)</label>
+            <label className="block text-sm font-medium mb-1.5">Estimated Time (minutes)</label>
             <input 
               type="number" 
               value={estimatedMinutes}
               onChange={(e) => setEstimatedMinutes(e.target.value ? Number(e.target.value) : '')}
-              className="w-full rounded-md border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary-500 focus:ring-primary-500 text-sm p-2 border"
-              placeholder="مثال: 30"
-              min="1"
+              placeholder="e.g. 30"
+              className="w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">تاريخ الاستحقاق</label>
+          <label className="block text-sm font-medium mb-1.5">Due Date</label>
           <input 
             type="date" 
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
-            className="w-full rounded-md border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary-500 focus:ring-primary-500 text-sm p-2 border"
+            className="w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
           />
         </div>
 
-        <div className="pt-4 flex justify-end gap-2">
-          <Button type="button" variant="ghost" onClick={onClose}>إلغاء</Button>
-          <Button type="submit">حفظ المهمة</Button>
+        <div className="flex justify-end gap-3 pt-2">
+          <Button type="button" variant="ghost" onClick={onClose}>
+            Cancel
+          </Button>
+          <Button type="submit" className="px-6">
+            Save Task
+          </Button>
         </div>
       </form>
     </Modal>

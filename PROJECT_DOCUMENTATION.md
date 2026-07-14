@@ -1,151 +1,151 @@
-# 🚀 توثيق مشروع TaskFlow (نظام إدارة المهام والأهداف الذكي)
+# 🚀 TaskFlow Project Documentation (Smart Task & Goal Management System)
 
 > [!NOTE]
-> **TaskFlow** هو تطبيق ويب متطور ومتكامل لإدارة المهام، الأهداف، والمواعيد اليومية بكفاءة عالية، تم بناؤه مع التركيز على تجربة المستخدم (UX)، الأداء الفائق، ودعم العمل دون اتصال بالإنترنت (**Offline-First**) الكامل مع خاصية المزامنة الآلية.
+> **TaskFlow** is a modern, comprehensive web application designed for efficient task, goal, and schedule management. Built with a strong focus on User Experience (UX), high performance, and full **Offline-First** capability with automatic synchronization.
 
 ---
 
-## 📋 نظرة عامة على المشروع (Project Overview)
+## 📋 Project Overview
 
-يوفر تطبيق **TaskFlow** بيئة عمل رقمية ذكية تساعد المستخدمين على تنظيم وقتهم وتتبع أهدافهم وإحصائيات إنجازهم بسهولة. يتميز التطبيق بتصميم حديث ومرن يدعم اللغتين **العربية والإنجليزية (RTL / LTR)**، بالإضافة إلى الدعم الكامل للوضع **النهاري والليلي (Dark / Light Mode)**.
+**TaskFlow** provides a smart digital workspace helping users organize their time, track their goals, and analyze their productivity effortlessly. The application features a modern, responsive design with full support for both **Dark / Light Mode**.
 
-### ✨ أبرز المميزات والخصائص:
-1. **العمل دون اتصال (Offline-First Strategy):** حفظ المهام والبيانات محلياً في متصفح المستخدم عبر **IndexedDB (Dexie.js)** لضمان عمل التطبيق بسرعة فائقة حتى في حال انقطاع الإنترنت، مع نظام طابور مزامنة (`Sync Queue`) لرفع التغييرات للخادم عند عودة الاتصال.
-2. **إدارة المهام بالسحب والإفلات (Drag & Drop):** إمكانية إعادة ترتيب وتصنيف المهام بحرية ومرونة عالية باستخدام أحدث مكتبات السحب والإفلات.
-3. **تقويم تفاعلي متكامل (Full Interactive Calendar):** عرض المهام ومواعيد الاستحقاق (Due Dates) في طرق عرض متعددة (شهري، أسبوعي، يومي، وقائمة) مع إمكانية التفاعل الفوري.
-4. **تتبع الأهداف (Goals Tracking):** ربط المهام اليومية بأهداف كبرى وتتبع تقدم إنجاز هذه الأهداف خطوة بخطوة.
-5. **لوحة تحكم وإحصائيات متقدمة (Analytics Dashboard):** عرض رسوم بيانية ومؤشرات أداء مخصصة لتوضيح معدل إتمام المهام والأهداف باستخدام الرسوم التفاعلية.
-6. **تصدير التقارير بصيغة PDF:** إمكانية تحويل وتصدير تقارير المهام والرسوم البيانية إلى ملفات PDF احترافية بضغطة زر.
-7. **تأثيرات بصرية وتحفيزية (Gamification & Confetti):** احتفالات بصرية وتأثيرات ألعاب نارية عند إنجاز المهام والأهداف لتعزيز تحفيز المستخدم.
+### ✨ Key Features:
+1. **Offline-First Strategy:** Tasks and data are stored locally in the browser via **IndexedDB (Dexie.js)**, ensuring lightning-fast operation even without an internet connection, supported by a `Sync Queue` system to sync changes to the server upon re-connection.
+2. **Drag & Drop Task Management:** Organize, reorder, and categorize tasks flexibly using state-of-the-art drag-and-drop libraries (`@dnd-kit`).
+3. **Full Interactive Calendar:** View tasks and due dates across multiple calendar views (Monthly, Weekly, Daily, and List views) with interactive scheduling (`FullCalendar v6`).
+4. **Goals Tracking:** Link daily tasks to major long-term goals and track progress step-by-step.
+5. **Analytics Dashboard:** Interactive charts and key performance indicators (`Recharts`) to visualize task and goal completion rates.
+6. **PDF Report Export:** Export task reports and analytical charts into professional PDF documents with a single click (`jsPDF` & `html2canvas`).
+7. **Gamification & Visual Effects:** Celebratory confetti animations when achieving goals and completing tasks (`canvas-confetti`).
 
 ---
 
-## 🛠️ التقنيات والمكتبات المستخدمة (Technology Stack)
+## 🛠️ Technology Stack
 
-تم بناء التطبيق باستخدام أحدث التقنيات ومعايير الويب الحديثة لضمان الأداء، الأمان، وسهولة الصيانة:
+The application is engineered using modern web technologies to ensure optimal performance, security, and maintainability:
 
-### 1️⃣ الواجهة الأمامية (Frontend Stack)
+### 1️⃣ Frontend Stack
 
-| التقنية / المكتبة | الدور والاستخدام في المشروع |
+| Technology / Library | Role & Purpose in Project |
 | :--- | :--- |
-| **React 18** | مكتبة بناء واجهة المستخدم مع الاعتماد على التحميل التلقائي السريع والـ Lazy Loading للصفحات (`Suspense`). |
-| **TypeScript (v5.9)** | إضافة نظام الأنواع القوي (Type Safety) لتقليل الأخطاء وتحسين كفاءة كتابة الكود والتطوير. |
-| **Vite (v8)** | بيئة تطوير وبناء فائقة السرعة (Build Tool & Dev Server) مع دعم تطبيق الويب التقدمي (PWA). |
-| **Tailwind CSS (v3.4)** | إطار عمل تنسيقات CSS لتصميم واجهات مرنة ومتجاوبة، مع دعم إضافات `tailwindcss-rtl` لاتجاهات العربية، و `@tailwindcss/forms`. |
-| **Zustand (v5)** | إدارة الحالة العالمية للتطبيق (State Management) بشكل خفيف ومباشر (`taskStore`, `goalStore`, `authStore`, `themeStore`, `langStore`). |
-| **React Router DOM (v6)** | إدارة التنقل ومسارات التطبيق وإطار العرض الأساسي (`AppShell`). |
-| **i18next & react-i18next** | دعم تعدد اللغات وإدارة الترجمات الفورية بين العربية (`ar`) والإنجليزية (`en`). |
-| **Lucide React** | حزمة أيقونات عصرية ومتناسقة تغطي كافة مكونات وأقسام التطبيق. |
+| **React 18** | UI component library with fast automatic loading and `Suspense` lazy loading. |
+| **TypeScript (v5.9)** | Strong type safety to minimize runtime errors and improve developer efficiency. |
+| **Vite (v8)** | High-speed build tool and dev server with Progressive Web App (PWA) support. |
+| **Tailwind CSS (v3.4)** | Utility-first CSS framework for flexible, responsive interface design (`@tailwindcss/forms`). |
+| **Zustand (v5)** | Lightweight global state management (`taskStore`, `goalStore`, `authStore`, `themeStore`, `langStore`). |
+| **React Router DOM (v6)** | Routing, navigation, and core layout management (`AppShell`). |
+| **i18next & react-i18next** | Internationalization and real-time translation management. |
+| **Lucide React** | Modern, consistent icon set covering all application components. |
 
 ---
 
-### 2️⃣ قواعد البيانات وإدارة البيانات المتقدمة (Data & Offline Layer)
+### 2️⃣ Data & Offline Layer
 
-| التقنية / المكتبة | الدور والاستخدام في المشروع |
+| Technology / Library | Role & Purpose in Project |
 | :--- | :--- |
-| **Dexie.js & Dexie React Hooks** | محرك قاعدة بيانات محلي يعتمد على `IndexedDB` لتخزين المهام، الأهداف، وإدارة طابور المزامنة (`SyncQueue`) في المتصفح بكفاءة عالية. |
-| **@dnd-kit (Core & Sortable)** | محرك السحب والإفلات المتقدم لإعادة ترتيب القوائم والمهام وإدارة حالات التحريك بسلاسة. |
-| **FullCalendar v6 (DayGrid, TimeGrid, Interaction, List)** | تقويم متطور واحترافي لجدولة المهام وعرضها عبر مختلف النطاقات الزمنية. |
-| **Axios** | إرسال واستقبال الطلبات وإدارة الاتصال مع واجهات برمجيات الواجهة الخلفية API ومزامنة طابور البيانات. |
+| **Dexie.js & Dexie React Hooks** | Local database engine over `IndexedDB` for tasks, goals, and offline `SyncQueue` management. |
+| **@dnd-kit (Core & Sortable)** | Advanced drag-and-drop engine for list sorting and smooth animations. |
+| **FullCalendar v6** | Professional calendar integration for scheduling across multiple time ranges. |
+| **Axios** | HTTP client for backend RESTful API requests and data queue synchronization. |
 
 ---
 
-### 3️⃣ الرسوم البيانية، التصدير والخدمات المساعدة (UI Enhancements & Utilities)
+### 3️⃣ UI Enhancements & Utilities
 
-| التقنية / المكتبة | الدور والاستخدام في المشروع |
+| Technology / Library | Role & Purpose in Project |
 | :--- | :--- |
-| **Recharts** | رسم وتحليل البيانات، وعرض المخططات البيانية (Bar Charts, Pie Charts, Line Charts) في صفحة الإحصائيات `Stats`. |
-| **jsPDF & html2canvas** | التقاط وتحويل عناصر الواجهة والتقارير والإحصائيات إلى صور وملفات PDF جاهزة للتحميل والمشاركة. |
-| **Canvas Confetti** | تشغيل تأثيرات احتفالية وبصرية تفاعلية عند تحقق الأهداف وإتمام المهام بنجاح. |
-| **Date-fns (v4)** | مكتبة معالجة وتنسيق ومقارنة التواريخ والأوقات بمرونة وخفة دون استهلاك الذاكرة. |
-| **clsx & tailwind-merge** | دمج الفئات (Classes) وتجنب تضارب التنسيقات عند تخصيص مكونات واجهة المستخدم. |
-| **Vite Plugin PWA & Workbox Window** | تمكين عمل التطبيق كتطبيق تقدمي يمكن تثبيته والعمل به في وضع عدم الاتصال (PWA). |
+| **Recharts** | Data visualization and charts (Bar, Pie, Line charts) on the `Stats` page. |
+| **jsPDF & html2canvas** | Capturing UI elements and reports to generate downloadable PDF documents. |
+| **Canvas Confetti** | Interactive celebratory effects triggered when completing goals or tasks. |
+| **Date-fns (v4)** | Lightweight, performant date formatting, parsing, and comparison utility. |
+| **clsx & tailwind-merge** | Safe conditional class merging for custom UI styling. |
+| **Vite Plugin PWA & Workbox Window** | Enables full installation and offline functionality as a Progressive Web App. |
 
 ---
 
-### 4️⃣ الواجهة الخلفية والخادم (Backend API & Database)
+### 4️⃣ Backend API & Database
 
 > [!TIP]
-> يضم المشروع واجهة خلفية مستقلة في مجلد `backend/` تعتمد على بيئة Node.js لتوفير خدمات المصادقة ومزامنة البيانات السحابية.
+> The project includes a dedicated Node.js backend inside the `backend/` directory providing authentication and cloud synchronization services.
 
-| التقنية / المكتبة | الدور والاستخدام في المشروع |
+| Technology / Library | Role & Purpose in Project |
 | :--- | :--- |
-| **Node.js & Express.js** | إطار عمل الواجهة الخلفية لإدارة الطلبات، وبناء مسارات الـ RESTful APIs. |
-| **PostgreSQL (`pg`)** | قاعدة البيانات العلائقية الرئيسية في الخادم لتخزين الحسابات والمهام والأهداف بشكل دائم. |
-| **JWT (JSON Web Token) & Bcrypt** | التشفير الآمن لكلمات المرور وإدارة جلسات المستخدمين ومصادقة الطلبات. |
-| **Cookie Parser & CORS** | التعامل الآمن مع الكوكيز (HttpOnly Cookies) وضبط صلاحيات الاتصال بين الواجهة الأمامية والخلفية. |
-| **Express Rate Limit** | حماية الخادم ومسارات المصادقة من هجمات الضغط وطلبات الاختناق (DDoS / Brute Force). |
+| **Node.js & Express.js** | Backend server framework for handling requests and building RESTful APIs. |
+| **PostgreSQL (`pg`)** | Primary relational database for persistent storage of users, tasks, and goals. |
+| **JWT & Bcrypt** | Secure password hashing, session management, and request authentication. |
+| **Cookie Parser & CORS** | Handling HttpOnly Cookies and setting secure cross-origin policies. |
+| **Express Rate Limit** | Protection against brute-force attacks and DDOS throttling. |
 
 ---
 
-## 🏗️ البنية المعمارية للمشروع (Project Structure)
+## 🏗️ Project Architecture & Structure
 
 ```text
 test/
 ├── src/
-│   ├── components/      # المكونات القابلة لإعادة الاستخدام
-│   │   ├── layout/      # مكونات التخطيط العام (AppShell, Navigation, Header)
-│   │   └── ui/          # عناصر الواجهة المشتركة (Buttons, Modals, Inputs)
-│   ├── db/              # إعدادات Dexie.js وتصميم جداول قاعدة البيانات المحلية (schema.ts)
-│   ├── features/        # وظائف ومكونات المهام المتقدمة (tasks)
-│   ├── i18n/            # إعدادات تعدد اللغات وملفات الترجمة (ar.json / en.json)
-│   ├── lib/             # الدوال المساعدة (Utils & Helpers)
-│   ├── pages/           # صفحات التطبيق الرئيسية:
-│   │   ├── Dashboard.tsx  # لوحة التحكم الرئيسية والموجز اليومي
-│   │   ├── Tasks.tsx      # قائمة المهام مع السحب والإفلات والفلترة
-│   │   ├── Goals.tsx      # صفحة الأهداف ومتابعة نسبة الإنجاز
-│   │   ├── Calendar.tsx   # التقويم الشامل (FullCalendar)
-│   │   ├── Stats.tsx      # الإحصائيات والرسوم البيانية والتصدير إلى PDF
-│   │   └── Settings.tsx   # تخصيص الإعدادات، اللغة، والمظهر (Dark/Light)
-│   ├── store/           # متاجر Zustand لإدارة الحالة والمزامنة:
-│   │   ├── taskStore.ts   # حالة المهام المحلي والمزامنة
-│   │   ├── goalStore.ts   # حالة الأهداف
-│   │   ├── authStore.ts   # حالة جلسة المستخدم والمصادقة
-│   │   ├── themeStore.ts  # حالة المظهر (ليلي/نهاري)
-│   │   └── langStore.ts   # حالة اللغة (عربي/إنجليزي)
-│   ├── App.tsx          # الموجه الأساسي (Router & Lazy Suspense)
-│   └── main.tsx         # نقطة انطلاق التطبيق (Entry Point)
+│   ├── components/      # Reusable UI Components
+│   │   ├── layout/      # General layout components (AppShell, Navigation, Header)
+│   │   └── ui/          # Shared UI elements (Buttons, Modals, Inputs)
+│   ├── db/              # Dexie.js setup and local database schema (schema.ts)
+│   ├── features/        # Advanced task features and components (tasks)
+│   ├── i18n/            # Internationalization configuration and translation files
+│   ├── lib/             # Utility helpers and functions
+│   ├── pages/           # Main application pages:
+│   │   ├── Dashboard.tsx  # Main overview dashboard and quick stats
+│   │   ├── Tasks.tsx      # Task list with filtering and drag-and-drop
+│   │   ├── Goals.tsx      # Long-term goals tracking and progress bars
+│   │   ├── Calendar.tsx   # Comprehensive interactive calendar (FullCalendar)
+│   │   ├── Stats.tsx      # Performance analytics and PDF report export
+│   │   └── Settings.tsx   # User preferences, theme, and account settings
+│   ├── store/           # Zustand global stores:
+│   │   ├── taskStore.ts   # Local task state and sync status
+│   │   ├── goalStore.ts   # Goals state management
+│   │   ├── authStore.ts   # User authentication and session store
+│   │   ├── themeStore.ts  # Theme state (Dark/Light mode)
+│   │   └── langStore.ts   # Language preference state
+│   ├── App.tsx          # Core application router and lazy Suspense wrapper
+│   └── main.tsx         # Application entry point
 │
-├── backend/             # خادم الواجهة الخلفية (API Server)
-│   ├── routes/          # مسارات المصادقة والمزامنة (Auth & Tasks API)
-│   ├── middleware/      # التحقق من الصلاحيات وحماية الطلبات (JWT & Rate Limit)
-│   ├── db.ts            # الاتصال بقاعدة بيانات PostgreSQL
-│   └── index.ts         # تشغيل خادم Express
+├── backend/             # Backend API Server
+│   ├── routes/          # Auth and task synchronization routes
+│   ├── middleware/      # JWT authentication and rate limit middleware
+│   ├── db.ts            # PostgreSQL database connection pool
+│   └── index.ts         # Express server setup
 │
-├── package.json         # مكتبات وإعدادات الواجهة الأمامية
-└── tailwind.config.js   # إعدادات وتخصيصات Tailwind CSS
+├── package.json         # Frontend dependencies and scripts
+└── tailwind.config.js   # Tailwind CSS configuration and theme design tokens
 ```
 
 ---
 
-## ⚙️ دليل التشغيل والتطوير المحلي (Setup & Running Guide)
+## ⚙️ Setup & Local Development Guide
 
-### 1. تشغيل الواجهة الأمامية (Frontend)
-في المجلد الرئيسي للمشروع، قم بتثبيت الحزم ثم تشغيل خادم التطوير:
+### 1. Running the Frontend
+From the project root directory, install dependencies and start the Vite development server:
 
 ```bash
-# تثبيت الحزم والمكتبات
+# Install required dependencies
 npm install
 
-# تشغيل خادم التطوير عبر Vite
+# Start development server
 npm run dev
 ```
 
-### 2. تشغيل الواجهة الخلفية (Backend)
-للحصول على المزامنة السحابية وخدمات المصادقة، افتح مجلد `backend/` وشغل الخادم:
+### 2. Running the Backend Server
+For cloud synchronization and user authentication, navigate to the `backend/` directory and start the server:
 
 ```bash
 cd backend
 
-# تثبيت مكتبات الواجهة الخلفية
+# Install backend dependencies
 npm install
 
-# تشغيل الخادم بوضع التطوير مع إعادة التحميل التلقائي
+# Start backend dev server with auto-reload
 npm run dev
 ```
 
-### 3. بناء النسخة الإنتاجية (Production Build)
-لإنتاج نسخة محسنة وجاهزة للنشر من الواجهة الأمامية:
+### 3. Production Build
+To create an optimized production build of the frontend web application:
 
 ```bash
 npm run build

@@ -15,7 +15,7 @@ function App() {
     <BrowserRouter>
       <Suspense fallback={
         <div className="flex justify-center items-center h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-bold">
-          تحميل...
+          Loading...
         </div>
       }>
         <Routes>

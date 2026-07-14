@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import en from './locales/en.json';
 import ar from './locales/ar.json';
 
-const savedLang = localStorage.getItem('taskflow-lang') || 'ar';
+const savedLang = localStorage.getItem('taskflow-lang') || 'en';
 document.documentElement.dir = savedLang === 'ar' ? 'rtl' : 'ltr';
 document.documentElement.lang = savedLang;
 

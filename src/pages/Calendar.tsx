@@ -4,7 +4,6 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import type { EventContentArg } from '@fullcalendar/core';
-import arLocale from '@fullcalendar/core/locales/ar-sa';
 import './calendar.css';
 import { useTaskStore } from '@/store/taskStore';
 import { AddTaskModal } from '@/features/tasks/AddTaskModal';
@@ -144,9 +143,9 @@ export default function Calendar() {
         ...prev,
         status: prev.status === 'completed' ? 'pending' : 'completed'
       } : null);
-      addToast({ title: 'تم', message: 'تم تحديث حالة المهمة بنجاح', type: 'success' });
+      addToast({ title: 'Success', message: 'Task status updated successfully', type: 'success' });
     } catch {
-      addToast({ title: 'خطأ', message: 'تعذر تحديث حالة المهمة', type: 'error' });
+      addToast({ title: 'Error', message: 'Failed to update task status', type: 'error' });
     }
   };
 
@@ -154,10 +153,10 @@ export default function Calendar() {
     if (!selectedTask) return;
     try {
       await deleteTask(selectedTask.id);
-      addToast({ title: 'تم', message: 'تم حذف المهمة بنجاح', type: 'success' });
+      addToast({ title: 'Success', message: 'Task deleted successfully', type: 'success' });
       setSelectedTask(null);
     } catch {
-      addToast({ title: 'خطأ', message: 'تعذر حذف المهمة', type: 'error' });
+      addToast({ title: 'Error', message: 'Failed to delete task', type: 'error' });
     }
   };
 
@@ -171,12 +170,12 @@ export default function Calendar() {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">التقويم وجدول المهام</h1>
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">Calendar & Schedule</h1>
               <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800">
-                <Sparkles className="w-3 h-3" /> تفاعلي
+                <Sparkles className="w-3 h-3" /> Interactive
               </span>
             </div>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">نظرة شاملة لجدولك الزمني مع إمكانية التنسيق وإدارة المواعيد بسهولة.</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">A comprehensive view of your schedule with easy coordination and event management.</p>
           </div>
         </div>
 
@@ -188,7 +187,7 @@ export default function Calendar() {
           className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg shadow-indigo-500/25 rounded-xl px-5 py-2.5 flex items-center gap-2.5 transition-all duration-300 font-semibold text-sm shrink-0 w-full sm:w-auto justify-center"
         >
           <Plus className="w-4 h-4 stroke-[2.5]" />
-          <span>إضافة مهمة للموعد</span>
+          <span>Add Task for Date</span>
         </Button>
       </div>
 
@@ -197,7 +196,7 @@ export default function Calendar() {
         {/* Total Scheduled */}
         <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center justify-between gap-3 hover:border-indigo-500/30 transition-all duration-200 group">
           <div>
-            <p className="text-xs font-medium text-slate-500 dark:text-slate-400">إجمالي المهام المجدولة</p>
+            <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Total Scheduled Tasks</p>
             <p className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 mt-1">{stats.total}</p>
           </div>
           <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform">
@@ -208,7 +207,7 @@ export default function Calendar() {
         {/* Due Today */}
         <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center justify-between gap-3 hover:border-rose-500/30 transition-all duration-200 group">
           <div>
-            <p className="text-xs font-medium text-slate-500 dark:text-slate-400">مهام اليوم المتبقية</p>
+            <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Remaining Today</p>
             <p className="text-2xl font-extrabold text-rose-600 dark:text-rose-400 mt-1">{stats.todayCount}</p>
           </div>
           <div className="w-12 h-12 rounded-2xl bg-rose-50 dark:bg-rose-950/50 flex items-center justify-center text-rose-600 dark:text-rose-400 group-hover:scale-110 transition-transform">
@@ -219,7 +218,7 @@ export default function Calendar() {
         {/* Pending Scheduled */}
         <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center justify-between gap-3 hover:border-amber-500/30 transition-all duration-200 group">
           <div>
-            <p className="text-xs font-medium text-slate-500 dark:text-slate-400">قيد الإنجاز والانتظار</p>
+            <p className="text-xs font-medium text-slate-500 dark:text-slate-400">In Progress & Pending</p>
             <p className="text-2xl font-extrabold text-amber-600 dark:text-amber-400 mt-1">{stats.pending}</p>
           </div>
           <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/50 flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform">
@@ -231,7 +230,7 @@ export default function Calendar() {
         <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center justify-between gap-3 hover:border-emerald-500/30 transition-all duration-200 group">
           <div className="flex-1">
             <div className="flex items-center justify-between text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">
-              <span>معدل إنجاز المواعيد</span>
+              <span>Schedule Completion Rate</span>
               <span className="font-bold text-emerald-600 dark:text-emerald-400">{stats.completionRate}%</span>
             </div>
             <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden mt-2">
@@ -251,7 +250,7 @@ export default function Calendar() {
       <div className="bg-white dark:bg-slate-900 p-3 sm:p-4 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-300">
           <Filter className="w-4 h-4 text-indigo-500" />
-          <span>تصفية المواعيد والمهام:</span>
+          <span>Filter Tasks & Events:</span>
         </div>
 
         <div className="flex flex-wrap items-center gap-2 sm:gap-4">
@@ -265,7 +264,7 @@ export default function Calendar() {
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
               }`}
             >
-              الكل ({stats.total})
+              All ({stats.total})
             </button>
             <button
               onClick={() => setStatusFilter('pending')}
@@ -275,7 +274,7 @@ export default function Calendar() {
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
               }`}
             >
-              قيد الانتظار ({stats.pending})
+              Pending ({stats.pending})
             </button>
             <button
               onClick={() => setStatusFilter('completed')}
@@ -285,23 +284,23 @@ export default function Calendar() {
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
               }`}
             >
-              مكتملة ({stats.completed})
+              Completed ({stats.completed})
             </button>
           </div>
 
           {/* Priority Filter */}
           <div className="flex items-center gap-1.5">
-            <span className="text-xs text-slate-500 dark:text-slate-400 hidden md:inline">الأولوية:</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400 hidden md:inline">Priority:</span>
             <select
               value={priorityFilter}
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               onChange={(e) => setPriorityFilter(e.target.value as any)}
               className="text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 px-3 py-1.5 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
-              <option value="all">⚡ جميع الأولويات</option>
-              <option value="high">🔴 أولوية عالية</option>
-              <option value="medium">🟡 أولوية متوسطة</option>
-              <option value="low">🟢 أولوية منخفضة</option>
+              <option value="all">⚡ All Priorities</option>
+              <option value="high">🔴 High Priority</option>
+              <option value="medium">🟡 Medium Priority</option>
+              <option value="low">🟢 Low Priority</option>
             </select>
           </div>
         </div>
@@ -312,9 +311,8 @@ export default function Calendar() {
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
-          locales={[arLocale]}
-          locale="ar-sa"
-          direction="rtl"
+          locale="en"
+          direction="ltr"
           headerToolbar={{
             right: 'prev,next today',
             center: 'title',
@@ -342,13 +340,13 @@ export default function Calendar() {
       <Modal 
         isOpen={!!selectedTask} 
         onClose={() => setSelectedTask(null)} 
-        title="تفاصيل المهمة المجدولة"
+        title="Scheduled Task Details"
       >
         {selectedTask && (
           <div className="space-y-5">
             <div className="flex items-start justify-between gap-3 p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
               <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">عنوان المهمة</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Task Title</span>
                 <h3 className={`text-base font-bold text-slate-900 dark:text-slate-100 ${
                   selectedTask.status === 'completed' ? 'line-through text-slate-400 dark:text-slate-500' : ''
                 }`}>
@@ -363,13 +361,13 @@ export default function Calendar() {
                 'bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800'
               }`}>
                 <Flag className="w-3 h-3" />
-                {selectedTask.priority === 'high' ? 'عالية' : selectedTask.priority === 'medium' ? 'متوسطة' : 'منخفضة'}
+                {selectedTask.priority === 'high' ? 'High' : selectedTask.priority === 'medium' ? 'Medium' : 'Low'}
               </span>
             </div>
 
             {selectedTask.description && (
               <div className="space-y-1.5">
-                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">الوصف والتفاصيل:</span>
+                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Description & Details:</span>
                 <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-sm text-slate-700 dark:text-slate-300 whitespace-pre-wrap leading-relaxed">
                   {selectedTask.description}
                 </div>
@@ -380,14 +378,14 @@ export default function Calendar() {
               <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 flex items-center gap-2.5">
                 <CalendarIcon className="w-4 h-4 text-indigo-500" />
                 <div>
-                  <span className="block text-slate-400">تاريخ الاستحقاق</span>
+                  <span className="block text-slate-400">Due Date</span>
                   <span className="font-bold text-slate-800 dark:text-slate-200 mt-0.5 block">
-                    {selectedTask.due_date ? new Date(selectedTask.due_date).toLocaleDateString('ar-EG', {
+                    {selectedTask.due_date ? new Date(selectedTask.due_date).toLocaleDateString('en-US', {
                       weekday: 'long',
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric'
-                    }) : 'غير محدد'}
+                    }) : 'Not specified'}
                   </span>
                 </div>
               </div>
@@ -395,9 +393,9 @@ export default function Calendar() {
               <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 flex items-center gap-2.5">
                 <Timer className="w-4 h-4 text-purple-500" />
                 <div>
-                  <span className="block text-slate-400">الوقت المتوقع</span>
+                  <span className="block text-slate-400">Estimated Time</span>
                   <span className="font-bold text-slate-800 dark:text-slate-200 mt-0.5 block">
-                    {selectedTask.estimated_minutes ? `${selectedTask.estimated_minutes} دقيقة` : 'غير محدد'}
+                    {selectedTask.estimated_minutes ? `${selectedTask.estimated_minutes} min` : 'Not specified'}
                   </span>
                 </div>
               </div>
@@ -410,12 +408,12 @@ export default function Calendar() {
                 className="text-rose-600 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/50 w-full sm:w-auto flex items-center justify-center gap-2 text-xs font-semibold"
               >
                 <Trash2 className="w-4 h-4" />
-                <span>حذف المهمة</span>
+                <span>Delete Task</span>
               </Button>
 
               <div className="flex items-center gap-2 w-full sm:w-auto">
                 <Button variant="ghost" onClick={() => setSelectedTask(null)} className="flex-1 sm:flex-none text-xs">
-                  إغلاق
+                  Close
                 </Button>
                 <Button
                   onClick={handleToggleStatus}
@@ -426,7 +424,7 @@ export default function Calendar() {
                   }`}
                 >
                   <Check className="w-4 h-4 stroke-[2.5]" />
-                  <span>{selectedTask.status === 'completed' ? 'إعادة إلى قيد الانتظار' : 'تحديد كمكتملة'}</span>
+                  <span>{selectedTask.status === 'completed' ? 'Mark as Pending' : 'Mark as Completed'}</span>
                 </Button>
               </div>
             </div>

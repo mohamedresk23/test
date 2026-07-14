@@ -5,11 +5,11 @@ import { cn } from '@/lib/utils';
 import { useAuthStore } from '@/store/authStore';
 
 const navItems = [
-  { path: '/', label: 'الرئيسية', icon: Home },
-  { path: '/tasks', label: 'المهام', icon: CheckSquare },
-  { path: '/goals', label: 'الأهداف', icon: Target },
-  { path: '/calendar', label: 'التقويم', icon: CalendarDays },
-  { path: '/stats', label: 'الإحصائيات', icon: BarChart2 },
+  { path: '/', label: 'Dashboard', icon: Home },
+  { path: '/tasks', label: 'Tasks', icon: CheckSquare },
+  { path: '/goals', label: 'Goals', icon: Target },
+  { path: '/calendar', label: 'Calendar', icon: CalendarDays },
+  { path: '/stats', label: 'Stats', icon: BarChart2 },
 ];
 
 export function Sidebar() {
@@ -50,7 +50,7 @@ export function Sidebar() {
           )}
         >
           <Settings className="w-5 h-5 rtl:ml-3 ltr:mr-3" />
-          الإعدادات
+          Settings
         </NavLink>
         
         <div className="flex items-center gap-3 px-3 py-2 pt-4 border-t border-slate-100 dark:border-slate-800/50">
@@ -61,7 +61,7 @@ export function Sidebar() {
             <span className="text-sm font-medium text-slate-900 dark:text-slate-100 truncate">{user?.name || 'User'}</span>
             <span className="text-xs text-slate-500 dark:text-slate-400 truncate">{user?.email || 'user@example.com'}</span>
           </div>
-          <button onClick={clearAuth} className="p-1.5 text-slate-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-900/30 dark:hover:text-red-400 rounded-md transition-colors" title="تسجيل الخروج">
+          <button onClick={clearAuth} className="p-1.5 text-slate-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-900/30 dark:hover:text-red-400 rounded-md transition-colors" title="Sign Out">
             <LogOut className="w-4 h-4 rtl:rotate-180" />
           </button>
         </div>

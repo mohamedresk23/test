@@ -22,8 +22,8 @@ export const useGoalStore = create<GoalState>()(
   persist(
     (set) => ({
       goals: [
-        { id: '1', title: 'تعلم البرمجة', progress: 65, status: 'active' },
-        { id: '2', title: 'قراءة 12 كتاب', progress: 10, status: 'active' },
+        { id: '1', title: 'Learn Programming', progress: 65, status: 'active' },
+        { id: '2', title: 'Read 12 Books', progress: 10, status: 'active' },
       ],
       addGoal: (data) => set((state) => ({
         goals: [{ ...data, id: uuidv4(), status: 'active', progress: 0 }, ...state.goals]

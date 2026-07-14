@@ -15,22 +15,22 @@ export default function Goals() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title.trim()) return addToast({ title: 'خطأ', message: 'يرجى إدخال عنوان الهدف', type: 'error' });
+    if (!title.trim()) return addToast({ title: 'Error', message: 'Please enter goal title', type: 'error' });
     addGoal({ title, target_date: targetDate });
     setIsModalOpen(false);
     setTitle('');
-    addToast({ title: 'نجاح', message: 'تم إضافة الهدف', type: 'success' });
+    addToast({ title: 'Success', message: 'Goal added successfully', type: 'success' });
   };
 
   return (
     <div className="space-y-6 pb-20 md:pb-6 animate-in fade-in duration-500 h-full flex flex-col">
       <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold">أهدافك الممتدة</h1>
-          <p className="text-slate-500 dark:text-slate-400">سجل طموحاتك وقسمها لخطوات نرى تقدمها.</p>
+          <h1 className="text-2xl sm:text-3xl font-bold">Your Goals</h1>
+          <p className="text-slate-500 dark:text-slate-400">Set your ambitions and break them down into actionable steps.</p>
         </div>
         <Button onClick={() => setIsModalOpen(true)} className="w-full sm:w-auto">
-          <Plus className="w-5 h-5 rtl:ml-2 ltr:mr-2" /> إضافة هدف
+          <Plus className="w-5 h-5 rtl:ml-2 ltr:mr-2" /> Add Goal
         </Button>
       </header>
       
@@ -40,9 +40,9 @@ export default function Goals() {
             <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mb-4">
               <Target className="w-8 h-8 text-slate-400" />
             </div>
-            <h3 className="text-lg font-bold mb-1">لا توجد أهداف نشطة</h3>
-            <p className="text-sm text-slate-500 mb-4">حدد وجهتك وابدأ العمل للوصول لها.</p>
-            <Button variant="secondary" onClick={() => setIsModalOpen(true)}>سجل أول أهدافك</Button>
+            <h3 className="text-lg font-bold mb-1">No Active Goals</h3>
+            <p className="text-sm text-slate-500 mb-4">Define your destination and start working towards it.</p>
+            <Button variant="secondary" onClick={() => setIsModalOpen(true)}>Record Your First Goal</Button>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -51,7 +51,7 @@ export default function Goals() {
                 <div className="flex justify-between items-start">
                   <div>
                     <h3 className="font-bold text-lg">{goal.title}</h3>
-                    {goal.target_date && <p className="text-xs text-slate-500 mt-1">المستهدف: {goal.target_date}</p>}
+                    {goal.target_date && <p className="text-xs text-slate-500 mt-1">Target: {goal.target_date}</p>}
                   </div>
                   <button onClick={() => deleteGoal(goal.id)} className="text-slate-400 hover:text-red-500 p-1">
                     <Trash2 className="w-4 h-4" />
@@ -60,7 +60,7 @@ export default function Goals() {
                 
                 <div className="space-y-1.5 pt-2">
                   <div className="flex justify-between text-sm font-medium">
-                    <span className="text-slate-600 dark:text-slate-400">نسبة الإنجاز</span>
+                    <span className="text-slate-600 dark:text-slate-400">Progress Rate</span>
                     <span className="text-primary-600">{goal.progress}%</span>
                   </div>
                   <ProgressBar value={goal.progress} colorClass="bg-primary-500" />
@@ -68,7 +68,7 @@ export default function Goals() {
                 
                 <div className="flex justify-end gap-2 pt-2">
                   <Button variant="ghost" className="border border-slate-200 dark:border-slate-700 bg-transparent text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800" size="sm" onClick={() => updateProgress(goal.id, Math.max(goal.progress - 10, 0))}>-10%</Button>
-                  <Button variant="ghost" size="sm" onClick={() => updateProgress(goal.id, Math.min(goal.progress + 10, 100))} className="bg-primary-50 text-primary-700 hover:bg-primary-100 dark:bg-primary-900/30 dark:text-primary-400">+10% إنجاز</Button>
+                  <Button variant="ghost" size="sm" onClick={() => updateProgress(goal.id, Math.min(goal.progress + 10, 100))} className="bg-primary-50 text-primary-700 hover:bg-primary-100 dark:bg-primary-900/30 dark:text-primary-400">+10% Progress</Button>
                 </div>
               </div>
             ))}
@@ -76,21 +76,21 @@ export default function Goals() {
         )}
       </div>
 
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="إضافة هدف جديد">
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Add New Goal">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-1">عنوان الهدف <span className="text-red-500">*</span></label>
+            <label className="block text-sm font-medium mb-1">Goal Title <span className="text-red-500">*</span></label>
             <input 
               type="text" 
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               className="w-full rounded-md border-slate-300 bg-white dark:bg-slate-800 p-2 border text-sm"
-              placeholder="مثال: إطلاق المشروع..."
+              placeholder="e.g. Launch the project..."
               autoFocus
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">تاريخ التحقيق المستهدف (اختياري)</label>
+            <label className="block text-sm font-medium mb-1">Target Completion Date (optional)</label>
             <input 
               type="date" 
               value={targetDate}
@@ -99,8 +99,8 @@ export default function Goals() {
             />
           </div>
           <div className="flex justify-end gap-2 pt-4">
-            <Button type="button" variant="ghost" onClick={() => setIsModalOpen(false)}>إلغاء</Button>
-            <Button type="submit">حفظ الهدف</Button>
+            <Button type="button" variant="ghost" onClick={() => setIsModalOpen(false)}>Cancel</Button>
+            <Button type="submit">Save Goal</Button>
           </div>
         </form>
       </Modal>

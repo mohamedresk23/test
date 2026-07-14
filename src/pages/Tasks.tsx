@@ -7,7 +7,7 @@ import { Checkbox } from '@/components/ui/Checkbox';
 import { Badge } from '@/components/ui/Badge';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
-import { ar } from 'date-fns/locale';
+import { enUS } from 'date-fns/locale';
 import confetti from 'canvas-confetti';
 
 export default function Tasks() {
@@ -45,20 +45,20 @@ export default function Tasks() {
   } as const;
   
   const priorityLabels = {
-    high: 'هامة',
-    medium: 'متوسطة',
-    low: 'عادية',
+    high: 'High',
+    medium: 'Medium',
+    low: 'Low',
   };
 
   return (
     <div className="space-y-6 pb-20 md:pb-6 animate-in fade-in duration-500 h-full flex flex-col">
       <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold">مهامك</h1>
-          <p className="text-slate-500 dark:text-slate-400">نظم يومك وأنجز المزيد.</p>
+          <h1 className="text-2xl sm:text-3xl font-bold">Your Tasks</h1>
+          <p className="text-slate-500 dark:text-slate-400">Organize your day and accomplish more.</p>
         </div>
         <Button onClick={() => setIsModalOpen(true)} className="w-full sm:w-auto">
-          <Plus className="w-5 h-5 rtl:ml-2 ltr:mr-2" /> إضافة مهمة
+          <Plus className="w-5 h-5 rtl:ml-2 ltr:mr-2" /> Add Task
         </Button>
       </header>
 
@@ -67,19 +67,19 @@ export default function Tasks() {
           onClick={() => setFilter('all')} 
           className={cn("px-4 py-2 font-medium text-sm transition-colors whitespace-nowrap", filter === 'all' ? "text-primary-600 border-b-2 border-primary-600" : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200")}
         >
-          الكل ({tasks.length})
+          All ({tasks.length})
         </button>
         <button 
           onClick={() => setFilter('pending')} 
           className={cn("px-4 py-2 font-medium text-sm transition-colors whitespace-nowrap", filter === 'pending' ? "text-primary-600 border-b-2 border-primary-600" : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200")}
         >
-          قيد التنفيذ ({tasks.filter(t => t.status !== 'completed').length})
+          In Progress ({tasks.filter(t => t.status !== 'completed').length})
         </button>
         <button 
           onClick={() => setFilter('completed')} 
           className={cn("px-4 py-2 font-medium text-sm transition-colors whitespace-nowrap", filter === 'completed' ? "text-primary-600 border-b-2 border-primary-600" : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200")}
         >
-          مكتملة ({tasks.filter(t => t.status === 'completed').length})
+          Completed ({tasks.filter(t => t.status === 'completed').length})
         </button>
       </div>
 
@@ -89,9 +89,9 @@ export default function Tasks() {
             <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mb-4">
               <CheckSquare className="w-8 h-8 text-slate-400" />
             </div>
-            <h3 className="text-lg font-bold mb-1">لا توجد مهام</h3>
-            <p className="text-slate-500 dark:text-slate-400 text-sm mb-4">الورقة البيضاء تدعوك لكتابة أول خطوة.</p>
-            <Button variant="secondary" onClick={() => setIsModalOpen(true)}>إضافة مهمة الآن</Button>
+            <h3 className="text-lg font-bold mb-1">No Tasks Found</h3>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mb-4">A blank page invites you to take your first step.</p>
+            <Button variant="secondary" onClick={() => setIsModalOpen(true)}>Add a Task Now</Button>
           </div>
         ) : (
           <div className="space-y-3">
@@ -127,13 +127,13 @@ export default function Tasks() {
                     {task.due_date && (
                       <span className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md text-primary-700 dark:text-primary-300">
                         <CalIcon className="w-3.5 h-3.5" />
-                        {format(new Date(task.due_date), 'dd MMM yyyy', { locale: ar })}
+                        {format(new Date(task.due_date), 'dd MMM yyyy', { locale: enUS })}
                       </span>
                     )}
                     {task.estimated_minutes && (
                       <span className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md">
                         <Clock className="w-3.5 h-3.5" />
-                        {task.estimated_minutes} دقيقة
+                        {task.estimated_minutes} min
                       </span>
                     )}
                   </div>
@@ -141,7 +141,7 @@ export default function Tasks() {
                 <button 
                   onClick={() => deleteTask(task.id)}
                   className="p-1.5 text-slate-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-900/30 dark:hover:text-red-400 rounded-md transition-colors shrink-0"
-                  title="حذف"
+                  title="Delete"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>

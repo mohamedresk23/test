@@ -4,11 +4,11 @@ import { Home, CheckSquare, Target, CalendarDays, BarChart2 } from 'lucide-react
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { path: '/', label: 'الرئيسية', icon: Home },
-  { path: '/tasks', label: 'المهام', icon: CheckSquare },
-  { path: '/goals', label: 'الأهداف', icon: Target },
-  { path: '/calendar', label: 'التقويم', icon: CalendarDays },
-  { path: '/stats', label: 'الإحصائيات', icon: BarChart2 },
+  { path: '/', label: 'Dashboard', icon: Home },
+  { path: '/tasks', label: 'Tasks', icon: CheckSquare },
+  { path: '/goals', label: 'Goals', icon: Target },
+  { path: '/calendar', label: 'Calendar', icon: CalendarDays },
+  { path: '/stats', label: 'Stats', icon: BarChart2 },
 ];
 
 export function BottomNav() {

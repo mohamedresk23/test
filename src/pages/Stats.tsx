@@ -10,28 +10,28 @@ export default function Stats() {
   const highPriorityCompleted = tasks.filter(t => t.status === 'completed' && t.priority === 'high').length;
 
   const data = [
-    { name: 'السبت', completed: 4 },
-    { name: 'الأحد', completed: 3 },
-    { name: 'الإثنين', completed: 5 },
-    { name: 'الثلاثاء', completed: 2 },
-    { name: 'الأربعاء', completed: 6 },
-    { name: 'الخميس', completed: 4 },
-    { name: 'الجمعة', completed: 7 },
+    { name: 'Sat', completed: 4 },
+    { name: 'Sun', completed: 3 },
+    { name: 'Mon', completed: 5 },
+    { name: 'Tue', completed: 2 },
+    { name: 'Wed', completed: 6 },
+    { name: 'Thu', completed: 4 },
+    { name: 'Fri', completed: 7 },
   ];
 
   return (
     <div className="space-y-6 pb-20 md:pb-6 animate-in fade-in duration-500">
       <header>
-        <h1 className="text-2xl sm:text-3xl font-bold mb-2">الإحصائيات والأداء</h1>
-        <p className="text-slate-500 dark:text-slate-400">تتبع تقدمك وحلل أداءك بمرور الوقت.</p>
+        <h1 className="text-2xl sm:text-3xl font-bold mb-2">Statistics & Performance</h1>
+        <p className="text-slate-500 dark:text-slate-400">Track your progress and analyze your performance over time.</p>
       </header>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: 'المهام المنجزة', val: completedCount, color: 'text-green-600 dark:text-green-500', bg: 'bg-green-100 dark:bg-green-900/40', icon: CheckCircle },
-          { label: 'قيد التنفيذ', val: pendingCount, color: 'text-blue-600 dark:text-blue-500', bg: 'bg-blue-100 dark:bg-blue-900/40', icon: Clock },
-          { label: 'المهام الهامة', val: highPriorityCompleted, color: 'text-amber-600 dark:text-amber-500', bg: 'bg-amber-100 dark:bg-amber-900/40', icon: Trophy },
-          { label: 'شعلة النشاط', val: 12, color: 'text-orange-600 dark:text-orange-500', bg: 'bg-orange-100 dark:bg-orange-900/40', icon: Flame, suffix: ' يوم' },
+          { label: 'Completed Tasks', val: completedCount, color: 'text-green-600 dark:text-green-500', bg: 'bg-green-100 dark:bg-green-900/40', icon: CheckCircle },
+          { label: 'In Progress', val: pendingCount, color: 'text-blue-600 dark:text-blue-500', bg: 'bg-blue-100 dark:bg-blue-900/40', icon: Clock },
+          { label: 'High Priority', val: highPriorityCompleted, color: 'text-amber-600 dark:text-amber-500', bg: 'bg-amber-100 dark:bg-amber-900/40', icon: Trophy },
+          { label: 'Active Streak', val: 12, color: 'text-orange-600 dark:text-orange-500', bg: 'bg-orange-100 dark:bg-orange-900/40', icon: Flame, suffix: ' days' },
         ].map((stat, i) => (
           <div key={i} className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col justify-center items-center text-center gap-2 transition-transform hover:scale-105">
             <div className={`p-3 rounded-full ${stat.bg}`}>
@@ -44,7 +44,7 @@ export default function Stats() {
       </div>
 
       <section className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800">
-        <h3 className="font-bold text-lg mb-6">المهام المنجزة هذا الأسبوع</h3>
+        <h3 className="font-bold text-lg mb-6">Tasks Completed This Week</h3>
         <div className="h-[300px] w-full" dir="ltr">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
