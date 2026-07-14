@@ -4,8 +4,6 @@
  * Will serve as the interface for customizing account details, appearance, and notifications.
  */
 
-import * as React from 'react';
-
 /**
  * Settings Page Component
  * 
