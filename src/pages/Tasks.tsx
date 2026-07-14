@@ -7,6 +7,7 @@
  */
 
 import * as React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTaskStore } from '@/store/taskStore';
 import { Button } from '@/components/ui/Button';
 import { Plus, CheckSquare, Trash2, Calendar as CalIcon, Clock } from 'lucide-react';
@@ -27,10 +28,19 @@ export default function Tasks() {
   const { tasks, loadTasks, toggleComplete, deleteTask } = useTaskStore();
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [filter, setFilter] = React.useState<'all' | 'pending' | 'completed'>('all');
+  const location = useLocation();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     loadTasks();
   }, [loadTasks]);
+
+  React.useEffect(() => {
+    if (new URLSearchParams(location.search).get('addTask') === '1') {
+      setIsModalOpen(true);
+      navigate('/tasks', { replace: true });
+    }
+  }, [location.search, navigate]);
 
   const handleToggle = (id: string, currentlyCompleted: boolean) => {
     toggleComplete(id);

@@ -7,6 +7,7 @@
  */
 
 import * as React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -46,6 +47,8 @@ export default function Calendar() {
   const [isAddModalOpen, setIsAddModalOpen] = React.useState(false);
   const [selectedDate, setSelectedDate] = React.useState<string>();
   const [selectedTask, setSelectedTask] = React.useState<Task | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // Filters state
   const [statusFilter, setStatusFilter] = React.useState<'all' | 'pending' | 'completed'>('all');
@@ -54,6 +57,14 @@ export default function Calendar() {
   React.useEffect(() => {
     loadTasks();
   }, [loadTasks]);
+
+  React.useEffect(() => {
+    if (new URLSearchParams(location.search).get('addTimeBlock') === '1') {
+      setSelectedDate(new Date().toISOString().split('T')[0]);
+      setIsAddModalOpen(true);
+      navigate('/calendar', { replace: true });
+    }
+  }, [location.search, navigate]);
 
   // Statistics calculation
   const stats = React.useMemo(() => {

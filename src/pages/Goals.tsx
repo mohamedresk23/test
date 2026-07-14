@@ -7,6 +7,7 @@
  */
 
 import * as React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useGoalStore } from '@/store/goalStore';
 import { Button } from '@/components/ui/Button';
 import { Target, Plus, Trash2 } from 'lucide-react';
@@ -25,6 +26,15 @@ export default function Goals() {
   const [title, setTitle] = React.useState('');
   const [targetDate, setTargetDate] = React.useState('');
   const addToast = useToastStore(s => s.addToast);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (new URLSearchParams(location.search).get('addGoal') === '1') {
+      setIsModalOpen(true);
+      navigate('/goals', { replace: true });
+    }
+  }, [location.search, navigate]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
